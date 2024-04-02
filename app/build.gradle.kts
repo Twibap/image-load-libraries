@@ -48,4 +48,8 @@ dependencies {
 
     implementation (libs.picasso)
     implementation (libs.glide)
+
+    implementation (libs.okhttp)
+    implementation (libs.okhttp.intercepteor)
+
 }
