@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -48,8 +49,10 @@ dependencies {
 
     implementation (libs.picasso)
     implementation (libs.glide)
+    implementation (libs.glide.integration)
 
     implementation (libs.okhttp)
     implementation (libs.okhttp.intercepteor)
 
+    ksp (libs.glide.ksp)
 }
