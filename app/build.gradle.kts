@@ -53,6 +53,7 @@ dependencies {
 
     implementation (libs.okhttp)
     implementation (libs.okhttp.intercepteor)
+    implementation (libs.okhttp.urlconnection)
 
     ksp (libs.glide.ksp)
 }

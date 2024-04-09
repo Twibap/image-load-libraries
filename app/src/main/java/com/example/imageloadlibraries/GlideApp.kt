@@ -9,9 +9,11 @@ import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
+import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.InputStream
+import java.net.CookieManager
 
 @GlideModule
 class GlideApp : AppGlideModule() {
@@ -26,7 +28,12 @@ class GlideApp : AppGlideModule() {
             level = HttpLoggingInterceptor.Level.HEADERS
         }
 
+        val cookieJar = JavaNetCookieJar(CookieManager())
+
         val client = OkHttpClient.Builder()
+            .cookieJar(cookieJar)
+            .addInterceptor(ETagInterceptor(cookieJar))
+            .addInterceptor(HeaderInterceptor(cookieJar))
             .addInterceptor(loggingInterceptor)
             .build()
 
